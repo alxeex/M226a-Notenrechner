@@ -1,10 +1,14 @@
 package ch.tbz;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 
 public class EditorService {
 
+    @Getter
     private final ArrayList<Semester> allSemesters = new ArrayList<>();;
+    @Getter
     private final ArrayList<MySubject> allSubjects = new ArrayList<>();;
 
     // Semester
@@ -15,15 +19,15 @@ public class EditorService {
     }
 
     public Semester editSemester(String semesterName, ArrayList<MySubject>  subjects) {
-        getSemester(semesterName).setSubjects(subjects);
-        return getSemester(semesterName);
+        getSemesterByName(semesterName).setMySubjects(subjects);
+        return getSemesterByName(semesterName);
     }
 
     public void deleteSemester(String semesterName){
-        allSemesters.remove(getSemester(semesterName));
+        allSemesters.remove(getSemesterByName(semesterName));
     }
 
-    public Semester getSemester(String semesterName) {
+    public Semester getSemesterByName(String semesterName) {
         for (Semester semester : allSemesters) {
             if(semester.getSemester().equals(semesterName)){
                 return semester;
@@ -33,28 +37,25 @@ public class EditorService {
         return null;
     }
 
-    public ArrayList<Semester> getAllSemesters() {
-        return this.allSemesters;
-    }
 
     // Subject
     public MySubject createSubject(int id, String subjectName, String semester) {
         MySubject subject = new MySubject(id, subjectName, semester);
-        this.addSubjectToSemester(subject, getSemester(semester));
+        this.addSubjectToSemester(subject, getSemesterByName(semester));
         allSubjects.add(subject);
         return subject;
     }
 
     public MySubject editSubject(int id, String subjectName, ArrayList<Mark> marks) {
-        getSubject(id).setMarks(marks);
-        return getSubject(id);
+        getSubjectById(id).setMarks(marks);
+        return getSubjectById(id);
     }
 
     public void deleteSubject(int id){
-        allSubjects.remove(getSubject(id));
+        allSubjects.remove(getSubjectById(id));
     }
 
-    public MySubject getSubject(int id) {
+    public MySubject getSubjectById(int id) {
         for (MySubject subject : allSubjects) {
             if(subject.getId() == id){
                 return subject;
@@ -64,7 +65,7 @@ public class EditorService {
         return null;
     }
 
-    public MySubject getSubject(String name) {
+    public MySubject getSubjectByName(String name) {
         for (MySubject subject : allSubjects) {
             if(subject.getSubject().equals(name)){
                 return subject;
@@ -72,10 +73,6 @@ public class EditorService {
         }
         System.out.println("Dieses Thema wurde nicht gefunden");
         return null;
-    }
-
-    public ArrayList<MySubject> getAllSubjects() {
-        return this.allSubjects;
     }
 
     public void addSubjectToSemester(MySubject subject, Semester semester){

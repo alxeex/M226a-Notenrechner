@@ -1,11 +1,26 @@
 package ch.tbz;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Mark {
+    @Getter
+    @Setter
     private int id;
+    @Getter
+    @Setter
     private float value;
+    @Getter
+    @Setter
     private int userId;
+    @Getter
+    @Setter
     private String subject;
+    @Getter
+    @Setter
     private String semester;
+    @Getter
+    @Setter
     private String germanName = "Noten";
 
     public Mark(int id, float value, int userId, String subject, String semester) {
@@ -16,43 +31,5 @@ public class Mark {
         this.semester = semester;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public float getValue() {
-        return value;
-    }
-
-    public void setValue(float value) {
-        this.value = value;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public String getSemester() {
-        return semester;
-    }
-
-    public void setSemester(String semester) {
-        this.semester = semester;
-    }
 }

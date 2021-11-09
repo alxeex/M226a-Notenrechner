@@ -1,8 +1,11 @@
 package ch.tbz;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 
 class AuthService {
+    @Getter
     private final ArrayList<User> users = new ArrayList<User>();
 
 
@@ -23,7 +26,7 @@ class AuthService {
     public User Login(String un, String pw) {
         for (User user : users) {
             if (user.getName().equals(un) && user.getPassword().equals(pw)) {
-                user.setLoggedIn(true);
+                user.setIsLoggedIn(true);
                 return user;
             }
         }
@@ -34,7 +37,7 @@ class AuthService {
     public boolean Logout(String un) {
         for (User user : users) {
             if (user.getName() == un) {
-                user.setLoggedIn(false);
+                user.setIsLoggedIn(false);
                 return true;
             }
         }
@@ -44,18 +47,14 @@ class AuthService {
     public boolean Logout(int id) {
         for (User user : users) {
             if (user.getId() == id) {
-                user.setLoggedIn(false);
+                user.setIsLoggedIn(false);
                 return true;
             }
         }
         return false;
     }
 
-    public ArrayList<User> getAllUsers() {
-        return users;
-    }
-
-    public User getUser(int userId) {
+    public User getUserById(int userId) {
         return users.get(userId - 1);
     }
 }

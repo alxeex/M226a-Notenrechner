@@ -1,9 +1,14 @@
 package ch.tbz;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 
 public class PreviewService {
+    @Getter
     private final ArrayList<Mark> allMarks = new ArrayList<>();
+    @Getter
     private final ArrayList<Mark> currentMarks = new ArrayList<>();
 
     public void showMarks(int id, int userId) {
@@ -21,13 +26,13 @@ public class PreviewService {
 
 
     public Mark editMark(int id, float value, String subject) {
-        getMark(id).setSubject(subject);
-        getMark(id).setValue(value);
-        return getMark(id);
+        getMarkById(id).setSubject(subject);
+        getMarkById(id).setValue(value);
+        return getMarkById(id);
     }
 
     public void deleteMark(int id){
-        allMarks.remove(getMark(id));
+        allMarks.remove(getMarkById(id));
     }
 
     public ArrayList<Mark> getMarks(int userid) {
@@ -40,7 +45,7 @@ public class PreviewService {
         return this.currentMarks;
     }
 
-    public Mark getMark(int id) {
+    public Mark getMarkById(int id) {
         for (Mark mark : allMarks) {
             if(mark.getId() == (id)){
                 return mark;
@@ -48,10 +53,6 @@ public class PreviewService {
         }
         System.out.println("Diese Marke wurde nicht gefunden");
         return null;
-    }
-
-    public ArrayList<Mark> getAllMarks() {
-        return this.allMarks;
     }
 
     public void addMarkToSubject(MySubject subject, Mark mark){

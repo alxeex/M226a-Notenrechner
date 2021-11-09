@@ -1,10 +1,23 @@
 package ch.tbz;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class User {
+    @Getter
+    @Setter
     private int id;
+    @Getter
+    @Setter
     private String name;
+    @Getter
+    @Setter
     private String password;
+    @Getter
+    @Setter
     private Boolean isLoggedIn = false;
+    @Getter
+    @Setter
     private Boolean admin = false;
 
     public User(Integer id, String name, String password, boolean admin) {
@@ -14,43 +27,12 @@ public class User {
         this.admin = admin;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public Boolean isLoggedIn() {
         return isLoggedIn;
     }
-
-    public void setLoggedIn(Boolean loggedIn) {
-        isLoggedIn = loggedIn;
-    }
-
     public Boolean isAdmin() {
         return admin;
-    }
-
-    public void getAdmin(Boolean admin) {
-        admin = admin;
     }
 }

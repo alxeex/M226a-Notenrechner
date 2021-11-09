@@ -37,7 +37,7 @@ public class GetTime {
 
 
         }  catch (Exception e){
-            System.out.println(e.toString());
+            System.out.println(e);
         }
     }
 
@@ -45,7 +45,7 @@ public class GetTime {
         try {
             System.out.println("Uhrzeit:\n" + responseMap.get("datetime") + "\nWoche:\n" + responseMap.get("week_number"));
         }catch (Exception e){
-            System.out.println(e.toString());
+            System.out.println(e);
         }
     }
 

@@ -1,30 +1,23 @@
 package ch.tbz;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 
 public class Semester  {
+    @Getter
+    @Setter
     private String semester;
+    @Getter
+    @Setter
     private ArrayList<MySubject> mySubjects = new ArrayList<>();
+    @Getter
+    @Setter
     private String germanName = "Semester";
 
     public Semester(String semester) {
         this.semester = semester;
-    }
-
-    public String getSemester() {
-        return semester;
-    }
-
-    public void setSemester(String semester) {
-        this.semester = semester;
-    }
-
-    public ArrayList<MySubject> getSubjects() {
-        return mySubjects;
-    }
-
-    public void setSubjects(ArrayList<MySubject> mySubjects) {
-        this.mySubjects = mySubjects;
     }
 
     public void addSubject(MySubject subject) {

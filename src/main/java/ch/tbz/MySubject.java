@@ -1,50 +1,31 @@
 package ch.tbz;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 
 public class MySubject{
+    @Getter
+    @Setter
     private int id;
+    @Getter
+    @Setter
     private String subject;
+    @Getter
+    @Setter
     private String semester;
+    @Getter
+    @Setter
     private ArrayList<Mark> marks = new ArrayList<>();
+    @Getter
+    @Setter
     private String germanName = "Themen";
 
     public MySubject(int id, String subject, String semester) {
         this.subject = subject;
         this.id = id;
         this.semester = semester;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public String getSemester() {
-        return semester;
-    }
-
-    public void setSemester(String semester) {
-        this.semester = semester;
-    }
-
-    public ArrayList<Mark> getMarks() {
-        return marks;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public void setMarks(ArrayList<Mark> marks) {
-        this.marks = marks;
     }
 
     public void addMark(Mark mark) {

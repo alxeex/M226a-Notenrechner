@@ -219,7 +219,7 @@ public class Menu {
 
     //Choose User
     private int chooseUser() {
-        for (User user : auth.getAllUsers()) {
+        for (User user : auth.getUsers()) {
             if (!user.isAdmin()) {
                 System.out.println(user.getId() + " : " + user.getName());
             }
@@ -239,7 +239,7 @@ public class Menu {
     private void printSubjects() {
         for(Semester semester: editorService.getAllSemesters()){
             System.out.println("Semester:" + semester.getSemester());
-            for (MySubject subject : semester.getSubjects()) {
+            for (MySubject subject : semester.getMySubjects()) {
                 System.out.println("------");
                 System.out.println("id: " + subject.getId());
                 System.out.println("Fach: " + subject.getSubject());
@@ -251,7 +251,7 @@ public class Menu {
     //Print all marks
     private void printMarks(ArrayList<Mark> marks) {
         for (Mark mark : marks) {
-            System.out.println(mark.getId() + " : " + mark.getValue() + " from " + auth.getUser(mark.getUserId()).getName());
+            System.out.println(mark.getId() + " : " + mark.getValue() + " from " + auth.getUserById(mark.getUserId()).getName());
         }
     }
 
@@ -279,7 +279,7 @@ public class Menu {
         int userId = this.chooseUser();
         String semesterName = this.chooseSemester();
         int subjectId = this.chooseSubject(semesterName);
-        MySubject subject = editorService.getSubject(subjectId);
+        MySubject subject = editorService.getSubjectById(subjectId);
         float value;
         do {
             System.out.println("Was ist die Note?");
@@ -288,7 +288,7 @@ public class Menu {
 
         Mark mark = previewService.createMark(this.markId, value, userId, subject, semesterName);
         System.out.println("Note erstellt:");
-        System.out.println("User: " + auth.getUser(userId).getName());
+        System.out.println("User: " + auth.getUserById(userId).getName());
         System.out.println("Note: " + mark.getValue());
         System.out.println("Thema: " + mark.getSubject());
     }
@@ -298,7 +298,7 @@ public class Menu {
         for (Semester semester : editorService.getAllSemesters()) {
             System.out.println("----------");
             System.out.println("semester: " + semester.getSemester());
-            for (MySubject mySubject : semester.getSubjects()) {
+            for (MySubject mySubject : semester.getMySubjects()) {
                 System.out.println("Fach: " + mySubject.getSubject());
             }
         }
@@ -307,7 +307,7 @@ public class Menu {
     //Output Marks
     private void getMarks() {
         for (Mark mark : previewService.getAllMarks()) {
-            System.out.println(mark.getSemester() + " : " + auth.getUser(mark.getUserId()).getName() + " : " + mark.getSubject() + " : " + mark.getValue());
+            System.out.println(mark.getSemester() + " : " + auth.getUserById(mark.getUserId()).getName() + " : " + mark.getSubject() + " : " + mark.getValue());
         }
     }
 
@@ -346,7 +346,7 @@ public class Menu {
         for (Semester semester: editorService.getAllSemesters()){
             System.out.println("***************************************");
             System.out.println("SEMSTER: " + semester.getSemester());
-            for (MySubject subject: semester.getSubjects()) {
+            for (MySubject subject: semester.getMySubjects()) {
                 System.out.println("Thema: " + subject.getSubject());
                 float summOfMarks = 0f;
                 int countMarks = 0;
