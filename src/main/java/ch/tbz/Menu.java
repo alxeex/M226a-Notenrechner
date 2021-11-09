@@ -83,7 +83,7 @@ public class Menu {
                 //Logout
                 String input = scan.next();
                 if (input.equals("x")) {
-                    System.out.println("Wir wünschen einen schönen Tag");
+                    System.out.println("Wir wünschen einen schönen Tag!");
                     auth.Logout(user.getId());
                 }
 
@@ -142,7 +142,7 @@ public class Menu {
                 }
             } while (user.isLoggedIn());
         } catch (Exception e) {
-            System.out.println("Ein Fehler ist aufgetreten");
+            System.out.println("Ein Fehler ist aufgetreten" + e);
         }
     }
 
@@ -167,7 +167,7 @@ public class Menu {
 
     //Logout
     private void exit() {
-        System.out.println("Wir wünschen ihnen einen schönen Tag");
+        System.out.println("Wir wünschen ihnen einen schönen Tag!");
         if (user != null)
             auth.Logout(user.getId());
         System.exit(0);
@@ -188,7 +188,7 @@ public class Menu {
             } else if (input.equals("e")) {
                 System.out.print("Geben sie den Benutzernamen ein: ");
                 var un = scan.next();
-                System.out.print("Geben sie ihr passwort ein: ");
+                System.out.print("Geben sie ihr Passwort ein: ");
                 var pw = scan.next();
                 user = auth.Login(un, pw);
             } else {
@@ -202,7 +202,7 @@ public class Menu {
         for (Semester semester : editorService.getAllSemesters()) {
             System.out.println(semester.getSemester());
         }
-        System.out.println("Wähle ein Semester");
+        System.out.println("Wähle ein Semester z.B 1");
         return scan.next();
     }
 
@@ -257,7 +257,7 @@ public class Menu {
 
     //Menu create new semester
     private void createSemester() {
-        System.out.println("Wie heisst dein Semester?");
+        System.out.println("Wie heisst dein Semester? z.B. Herbst-2022");
         String semesterName = scan.next();
         Semester semester = editorService.createSemester(semesterName);
         System.out.println("Semester: " + semester.getSemester() + " erstellt");
@@ -265,7 +265,7 @@ public class Menu {
 
     //Menu create Subject
     private void createSubject() {
-        System.out.println("Wie heisst dein Thema?");
+        System.out.println("Wie heisst dein Thema? z.B. M226");
         String subjectName = scan.next();
         this.subjectId += 1;
         MySubject subject = editorService.createSubject(subjectId, subjectName, chooseSemester());
@@ -275,14 +275,14 @@ public class Menu {
     //Menu create Mark
     private void createMark() {
         this.markId += 1;
-        System.out.println("Für wen ist die Note?");
+        System.out.println("Für wen ist die Note? z.B. Julian");
         int userId = this.chooseUser();
         String semesterName = this.chooseSemester();
         int subjectId = this.chooseSubject(semesterName);
         MySubject subject = editorService.getSubjectById(subjectId);
         float value;
         do {
-            System.out.println("Was ist die Note?");
+            System.out.println("Was ist die Note? z.B. 4.5");
             value = Float.parseFloat(scan.next());
         } while (value < 1 || value > 6);
 
